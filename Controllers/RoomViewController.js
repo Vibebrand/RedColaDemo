@@ -12,16 +12,29 @@ var RoomViewController = function() {
 			"100px",
 			"100px"
 			);
+		image2 = self.createImage(
+			"http://www.diariothc.com/wp-content/uploads/2010/02/ball-chair.jpg",
+			"100px",
+			"100px"
+			);
 		self.roomContainer.append(image1);
+		self.roomContainer.append(image2);
 	}
 
 	self.createImage = function(imageUrl,height,width){
 		imageContainer = $("<div></div>");
+		imageContainer.attr("class","image-container");
 		image = $("<img/>");
 		image.attr("src",imageUrl);
 		image.height(height);
 		image.width(width);
-		imageContainer.css({'border':'1px solid black', 'height' : height, "width": width});
+		imageContainer.css({
+			'border':'1px solid black', 
+			'height' : height, 
+			'width': width,
+			'position': 'absolute',
+			'index-z': '1'
+		});
 		imageContainer.append(image);
 
 		$(document).bind('mouseup', function(){
@@ -41,6 +54,8 @@ var RoomViewController = function() {
 		return imageContainer;
 	}
 	self.moveImageContainer = function(event){
+		$(".image-container").css({'z-index': '1'});
+		self.actualImage.css({'z-index': '2'});
 		self.validateHorizontal(event);
 		self.validateVertical(event);
 	}
