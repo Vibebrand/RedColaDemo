@@ -95,6 +95,9 @@ var  CanvasViewController = function(){
         });
 
         stage.draw();
+
+    $('.kineticjs-content').css({'width': '1078px', 'height': '900px'});
+    $("canvas").css({'width': '1078px', 'height': '900px'});
 	}
 
 	self.addAnchor = function(group, x, y, name){
