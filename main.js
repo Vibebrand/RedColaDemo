@@ -1,14 +1,14 @@
 $(document).ready(function(){
 
-	importfile("Controllers/CanvasViewController.js");
+	importfile("Controllers/RoomViewController.js");
 
 	window.setTimeout(function(){
 		loadImports(main);
 	},50);
 
 	var main = function(){
-		var canvasViewController = new CanvasViewController();
+		var roomViewController = new RoomViewController();
 
-		canvasViewController.createContent();
+		roomViewController.createContent();
 	}	
 });

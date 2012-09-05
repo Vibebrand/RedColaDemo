@@ -95,6 +95,9 @@ var  CanvasViewController = function(){
         });
 
         stage.draw();
+
+    $('.kineticjs-content').css({'width': '1078px', 'height': '900px'});
+    $("canvas").css({'width': '1078px', 'height': '900px'});
 	}
 
 	self.addAnchor = function(group, x, y, name){
@@ -146,50 +149,104 @@ var  CanvasViewController = function(){
 	self.update = function(group, activeAnchor){
 
 		var topLeft = group.get(".topLeft")[0];
-        var topRight = group.get(".topRight")[0];
-        var bottomRight = group.get(".bottomRight")[0];
-        var bottomLeft = group.get(".bottomLeft")[0];
-        var image = group.get(".image")[0];
+    var topRight = group.get(".topRight")[0];
+    var bottomRight = group.get(".bottomRight")[0];
+    var bottomLeft = group.get(".bottomLeft")[0];
+    var image = group.get(".image")[0];
 
-        
+    var factor = 15;
 
-        switch (activeAnchor.getName()) {
-          case "topLeft":
-            topRight.attrs.y = activeAnchor.attrs.y;
-            bottomLeft.attrs.x = activeAnchor.attrs.x;
-            break;
-          case "topRight":
-            topLeft.attrs.y = activeAnchor.attrs.y;
-            bottomRight.attrs.x = activeAnchor.attrs.x;
-            break;
-          case "bottomRight":
-            bottomLeft.attrs.y = activeAnchor.attrs.y;
-            topRight.attrs.x = activeAnchor.attrs.x;
-            break;
-          case "bottomLeft":
-
-            bottomRight.attrs.y = activeAnchor.attrs.y;
-            topLeft.attrs.x = activeAnchor.attrs.x;
-
-           console.log(bottomRight.attrs.y);
-          console.log(topLeft.attrs.x);
-            break;
-        }
+    switch (activeAnchor.getName()) {
+      case "topLeft":
+        self.validateLeftToRigth(activeAnchor, group, factor);
+        self.validateUpToDown(activeAnchor, group, factor);
+        break;
+      case "topRight":
+        self.validateRightToLeft(activeAnchor, group, factor);
+        self.validateUpToDown(activeAnchor, group, factor);
+        break;
+      case "bottomRight":
+        self.validateRightToLeft(activeAnchor, group, factor);
+        self.validateDownToUp(activeAnchor, group, factor);
+        break;
+      case "bottomLeft":
+        self.validateLeftToRigth(activeAnchor, group, factor);
+        self.validateDownToUp(activeAnchor, group, factor);
+        break;
+    }
 
        
-        var width = topRight.attrs.x - topLeft.attrs.x;
-        var height = bottomLeft.attrs.y - topLeft.attrs.y;
+    var width = topRight.attrs.x - topLeft.attrs.x;
+    var height = bottomLeft.attrs.y - topLeft.attrs.y;
 
-        width = (width < 0 ? 0 : width );
-        height = (height < 0 ? 0 : height);
+    width = (width < 0 ? 0 : width );
+    height = (height < 0 ? 0 : height);
 
-        if(width > 0  && height > 0) {
-          image.setSize(width, height);
-          image.setPosition(topLeft.attrs.x, topLeft.attrs.y);
-        }
+    if(width > 0  && height > 0) {
+      image.setSize(width, height);
+      image.setPosition(topLeft.attrs.x, topLeft.attrs.y);
+    }
 
 	}
 
+  self.validateRightToLeft = function(activeAnchor,group, factor) {
+    topLeft = group.get(".topLeft")[0];
+    bottomRight = group.get(".bottomRight")[0];
+    topRight = group.get(".topRight")[0];
+
+    if(activeAnchor.attrs.x < topLeft.attrs.x +factor){
+      activeAnchor.attrs.x = topLeft.attrs.x+factor;
+      bottomRight.attrs.x = activeAnchor.attrs.x;
+      topRight.attrs.x = activeAnchor.attrs.x;
+    }else{
+      bottomRight.attrs.x = activeAnchor.attrs.x;
+      topRight.attrs.x = activeAnchor.attrs.x;
+    }
+      
+  }
+  self.validateLeftToRigth = function(activeAnchor,group, factor) {
+    topRight = group.get(".topRight")[0];
+    bottomLeft = group.get(".bottomLeft")[0];
+    topLeft = group.get(".topLeft")[0];
+
+    if(activeAnchor.attrs.x > topRight.attrs.x- factor){
+      activeAnchor.attrs.x = topRight.attrs.x - factor;
+      bottomLeft.attrs.x = activeAnchor.attrs.x;
+      topLeft.attrs.x = activeAnchor.attrs.x;
+    }else{
+      bottomLeft.attrs.x = activeAnchor.attrs.x;
+      topLeft.attrs.x = activeAnchor.attrs.x;
+    }
+  }
+  self.validateUpToDown = function (activeAnchor,group, factor) {
+    bottomRight = group.get(".bottomRight")[0];
+    topLeft = group.get(".topLeft")[0];
+    topRight = group.get(".topRight")[0];
+
+    if(activeAnchor.attrs.y > bottomRight.attrs.y- factor){
+      activeAnchor.attrs.y = bottomRight.attrs.y - factor;
+      topLeft.attrs.y = activeAnchor.attrs.y;
+      topRight.attrs.y = activeAnchor.attrs.y;
+    }else{
+      topLeft.attrs.y = activeAnchor.attrs.y;
+      topRight.attrs.y = activeAnchor.attrs.y;
+    }
+  }
+
+  self.validateDownToUp = function (activeAnchor,group, factor) {
+    topRight = group.get(".topRight")[0];
+    bottomRight = group.get(".bottomRight")[0];
+    bottomLeft = group.get(".bottomLeft")[0];
+
+  if(activeAnchor.attrs.y < topRight.attrs.y + factor){
+      activeAnchor.attrs.y = topRight.attrs.y + factor;
+      bottomRight.attrs.y = activeAnchor.attrs.y;
+      bottomLeft.attrs.y = activeAnchor.attrs.y;
+    }else{
+      bottomRight.attrs.y = activeAnchor.attrs.y;
+      bottomLeft.attrs.y = activeAnchor.attrs.y;
+    }
+  }
 
 
 }
