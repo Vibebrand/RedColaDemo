@@ -12,8 +12,10 @@ $(document).ready(function(){
 		var roomViewController = new RoomViewController();
 		var imageService = new ImageService();
 
-		roomViewController.createContent();
+		
 		roomViewController.imageService = imageService;
 		imageService.imageDelegate = roomViewController;
+
+		roomViewController.createContent();
 	}	
 });
