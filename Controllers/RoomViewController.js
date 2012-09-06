@@ -15,6 +15,7 @@ var RoomViewController = function() {
 			);
 		self.roomContainer.append(image1);
 		self.roomContainer.append(image2);
+
 	}
 
 	self.createImage = function(imageUrl,height,width){
@@ -25,12 +26,21 @@ var RoomViewController = function() {
 		image.height(height);
 		image.width(width);
 		imageContainer.append(image);
-		imageContainer.css({"position":"absolute"});
+		imageContainer.css({"position":"absolute", "z-index": "1"});
 
-		imageContainer.draggable().resizable({
+		imageContainer.draggable({
+			containment: self.roomContainer
+		}).resizable({
+			containment: self.roomContainer,
 			alsoResize: imageContainer.find('img'),
-			handles: 'n, e, s, w, ne, se, sw, nw'
+			handles: 'ne, se, sw, nw'
 			});
+
+		imageContainer.bind("mousedown", function(){
+			$(".image-container").css({"z-index":"1"});
+			$(this).css({"z-index":"2"});
+		});
+
 		return imageContainer;
 	}
 
