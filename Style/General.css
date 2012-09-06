@@ -49,23 +49,29 @@
 
 }
 
-.ui-resizable-nw{
+.close-button{
 	top: -5;
-	left: -5;
+	right: -5;
+	position: absolute;
+}
+
+.ui-resizable-nw{
+	top: -15;
+	left: -15;
 }
 
 .ui-resizable-ne{
-	top: -5;
-	right: -5;
+	top: -15;
+	right: -15;
 }
 
 .ui-resizable-se{
-	bottom: -5;
-	right: -5;
+	bottom: -15;
+	right: -15;
 }
 
 .ui-resizable-sw{
-	bottom: -5;
-	left: -5;
+	bottom: -15;
+	left: -15;
 }
 
