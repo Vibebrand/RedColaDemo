@@ -1,5 +1,6 @@
 var RoomViewController = function() {
 	var self = this;
+	self.imageService = null;
 
 	self.createContent = function(){
 		self.roomContainer = $(".room-container");

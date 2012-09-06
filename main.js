@@ -1,6 +1,8 @@
 $(document).ready(function(){
 
-	importfile("Controllers/RoomViewController.js");
+	importfile("Classes/Controllers/RoomViewController.js");
+	importfile("Classes/Services/ImageService.js");
+
 
 	window.setTimeout(function(){
 		loadImports(main);
@@ -8,7 +10,10 @@ $(document).ready(function(){
 
 	var main = function(){
 		var roomViewController = new RoomViewController();
+		var imageService = new ImageService();
 
 		roomViewController.createContent();
+		roomViewController.imageService = imageService;
+		imageService.imageDelegate = roomViewController;
 	}	
 });
