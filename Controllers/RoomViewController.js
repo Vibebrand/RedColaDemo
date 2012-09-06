@@ -29,7 +29,7 @@ var RoomViewController = function() {
 
 		imageContainer.draggable().resizable({
 			alsoResize: imageContainer.find('img'),
-			handles: 'n, e, s, w, ne, se, sw, nw'
+			handles: 'ne, se, sw, nw'
 			});
 		return imageContainer;
 	}
