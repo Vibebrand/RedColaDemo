@@ -4,21 +4,29 @@ var RoomViewController = function() {
 
 	self.createContent = function(){
 		self.roomContainer = $(".room-container");
-		image1 = self.createImage(
-			"http://www.diariothc.com/wp-content/uploads/2010/02/ball-chair.jpg",
-			"100px",
-			"100px"
-			);
-		image2 = self.createImage(
-			"http://www.diariothc.com/wp-content/uploads/2010/02/ball-chair.jpg",
-			"100px",
-			"100px"
-			);
-		self.roomContainer.append(image1);
-		self.roomContainer.append(image2);
-
+		self.menuContainer = $(".menu-container");
+		self.imageService.obtainMenuImages();
 	}
 
+	self.assignMenuImages = function(menuImages){
+		$.each(menuImages, function(index,value){
+			menuLink = self.createMenuLink(value,  index);
+			self.menuContainer.append(menuLink);
+		});
+	}
+
+	self.createMenuLink = function(src, index){
+		menuLink = $("<div></div>");
+		menuLink.attr("class","menuLink-container");
+		menuImage = $("<img>/");
+		menuImage.attr("src",src);
+		menuLink.append(menuImage);
+		menuLink.data("id",index);
+		menuLink.bind('click', function(){
+			self.onClickMenuLink($(this));
+		});
+		return menuLink;
+	}
 	self.createImage = function(imageUrl,height,width){
 		imageContainer = $("<div></div>");
 		imageContainer.attr("class","image-container");
@@ -39,10 +47,26 @@ var RoomViewController = function() {
 
 		imageContainer.bind("mousedown", function(){
 			$(".image-container").css({"z-index":"1"});
+			$(".image-container").find(".ui-resizable-handle").hide();
 			$(this).css({"z-index":"2"});
+			$(this).find(".ui-resizable-handle").show();
 		});
 
 		return imageContainer;
 	}
+	self.onClickMenuLink = function(menuLink) {
+		self.imageService.obtainImage(menuLink.data("id"))
+	}
 
+	self.assignImage = function (src) {
+		image = self.createImage(src, 100,100);
+		self.roomContainer.append(image);
+
+		image.css({
+			"top": (self.roomContainer.height()/2) -image.height(),
+			"left":(self.roomContainer.width()/2) -image.width()
+		});
+
+		image.find(".ui-resizable-handle").hide();
+	}
 }

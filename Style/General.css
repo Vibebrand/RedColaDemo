@@ -1,13 +1,32 @@
+
+.room-section{
+	margin-top: 100px;
+	margin-left: 100px;
+}
+
 .room-container{
 	width: 900px;
 	height: 600px;
 	border: black 1px solid;
-	margin-top: 100px;
-	margin-left: 100px;
 	position: relative;
+	float: left;
 }
 
+.menu-container{
+	width: 100px;
+	height: 600px;
+	border: black 1px solid;
+	position: relative;
+	float: left;
+}
+.menuLink-container, .menuLink-container img{
+	width: 100px;
+	height: 100px;
+}
 
+.menuLink-container{
+	border: black 1px solid;
+}
 .ui-resizable-handle
 {
 	background: none repeat scroll 0 0 #555555;
