@@ -4,10 +4,11 @@
 	border: black 1px solid;
 	margin-top: 100px;
 	margin-left: 100px;
+	position: relative;
 }
 
-.ui-resizable-ne, .ui-resizable-se, 
-.ui-resizable-sw, .ui-resizable-nw
+
+.ui-resizable-handle
 {
 	background: none repeat scroll 0 0 #555555;
     border: 1px solid #111111;
@@ -19,23 +20,35 @@
 
 }
 
+.ui-resizable-handle:hover
+{
+	background: none repeat scroll 0 0 #757575;
+    border: 2px solid #111111;
+    border-radius: 50% 50% 50% 50%;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    height: 10px;
+    width: 10px;
+    position: absolute;
+
+}
+
 .ui-resizable-nw{
-	top: 0;
-	left: 0;
+	top: -5;
+	left: -5;
 }
 
 .ui-resizable-ne{
-	top: 0;
-	right: 0;
+	top: -5;
+	right: -5;
 }
 
 .ui-resizable-se{
-	bottom: 0;
-	right: 0;
+	bottom: -5;
+	right: -5;
 }
 
 .ui-resizable-sw{
-	bottom: 0;
-	left: 0;
+	bottom: -5;
+	left: -5;
 }
 
