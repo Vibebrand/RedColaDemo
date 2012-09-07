@@ -37,6 +37,12 @@
     position: absolute;
 
 }
+.close-button{
+	top:-20;
+	left: -20;
+	position: absolute;
+	cursor: pointer;
+}
 
 .ui-resizable-handle:hover
 {
@@ -49,29 +55,23 @@
 
 }
 
-.close-button{
-	top: -5;
-	right: -5;
-	position: absolute;
-}
-
 .ui-resizable-nw{
-	top: -15;
-	left: -15;
+	top: 0;
+	left: 0;
 }
 
 .ui-resizable-ne{
-	top: -15;
-	right: -15;
+	top: 0;
+	right: 0;
 }
 
 .ui-resizable-se{
-	bottom: -15;
-	right: -15;
+	bottom: 0;
+	right: 0;
 }
 
 .ui-resizable-sw{
-	bottom: -15;
-	left: -15;
+	bottom: 0;
+	left: 0;
 }
 

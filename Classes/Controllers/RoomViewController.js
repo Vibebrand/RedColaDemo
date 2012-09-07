@@ -36,16 +36,28 @@ var RoomViewController = function() {
 		closeBtn.text("X");
 		image = $("<img/>");
 		image.attr("src",imageUrl);
-		image.height(height);
-		image.width(width);
 		imageContainer.append(image);
 		imageContainer.append(closeBtn);
 		closeBtn.hide();
+
 		closeBtn.bind("click", function(){
 			$(this).parents(".image-container").remove();
 		});
 
-		imageContainer.css({"position":"absolute", "z-index": "1"});
+		imageContainer.css({
+			"height": height,
+			"width": width,
+			"position":"absolute", 
+			"z-index": "1"
+		});
+
+		image.css({
+			"height": height-30,
+			"width": width-30,
+			"position": 'absolute',
+			"margin-top": (height - (height-30))/2 +"px",
+			"margin-left": (width - (width-30))/2 +"px"
+		});
 
 		imageContainer.draggable({
 			containment: self.roomContainer
@@ -84,12 +96,12 @@ var RoomViewController = function() {
 	}
 
 	self.assignImage = function (src) {
-		image = self.createImage(src, 100,100);
+		image = self.createImage(src, 200,200);
 		self.roomContainer.append(image);
 
 		image.css({
-			"top": (self.roomContainer.height()/2) -image.height(),
-			"left":(self.roomContainer.width()/2) -image.width()
+			"top": (self.roomContainer.height()/2) -image.height()/2,
+			"left":(self.roomContainer.width()/2) -image.width()/2
 		});
 
 		image.find(".ui-resizable-handle").hide();

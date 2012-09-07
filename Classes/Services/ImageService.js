@@ -2,14 +2,14 @@ var ImageService = function() {
 	var self = this;
 
 	self.imageDelegate = null;
-
-	self.menuImages = {
-		"0": "http://www.diariothc.com/wp-content/uploads/2010/02/ball-chair.jpg",
-		"1":"http://decoracion2.com/imagenes/2009/05/blofield3-300x169.png",
-		"2": "http://decoracion2.com/wp-content/uploads/mueble-papel.png"
-		};
+	self.folderImages = {
+		"0":"Airplane",
+	}	
 
 	self.obtainMenuImages = function(){
+		$.each(self.folderImages, function(index,value){
+			self.menuImages =  {  index :"Resources/Room/"+value+"/01.png" }
+		});
 		self.imageDelegate.assignMenuImages(self.menuImages);
 	}
 	self.obtainImage = function(imgID) {
