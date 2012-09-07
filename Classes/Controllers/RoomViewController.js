@@ -1,6 +1,8 @@
 var RoomViewController = function() {
 	var self = this;
 	self.imageService = null;
+	self.position = null;
+	self.actualLink = null;
 
 	self.createContent = function(){
 		self.roomContainer = $(".room-container");
@@ -23,13 +25,25 @@ var RoomViewController = function() {
 		menuImage.attr("src",src);
 		menuLink.append(menuImage);
 		menuLink.data("id",index);
-		menuLink.mousedown("mousedown", function(){
-			
+		menuImage.draggable({
+			containment: self.roomContainer,
+			helper: "clone"
 		});
-		menuLink.bind('mouseup', function(event){
+		menuLink.bind('mousedown',function(){
+			self.actualLink = $(this);
+		});
+		menuLink.bind('mouseup',function(){
 
-			self.onClickMenuLink($(this));
+			self.position = 
+			{
+				"left" : $(".ui-draggable-dragging").css("left"),
+				"top" : $(".ui-draggable-dragging").css("top")
+			}
+
+			self.roomContainer.unbind("mousemove");
+			self.imageService.obtainImage($(this).data("id"));
 		});
+		
 		return menuLink;
 	}
 	self.createImage = function(imageUrl,height,width){
@@ -148,15 +162,16 @@ var RoomViewController = function() {
 	}
 
 	self.assignImage = function (src) {
-		image = self.createImage(src, 100,100);
+		image = self.createImage(src, 130,130);
 		self.roomContainer.append(image);
+		if(self.position){
+			image.css(self.position);
+			image.css({"top": "-=15px", "left": "-=15px"});
+		}
+		else
+			image.css({"top": "100px", "left": "100px"});
 
-		image.css({
-			"top": 0,
-			"left":0
-		});
 		image.find(".ui-resizable-handle").hide();
-		image.trigger("mousedown");
 	}
 
 	self.addZero = function(num)
