@@ -3,6 +3,7 @@ var RoomViewController = function() {
 	self.imageService = null;
 	self.position = null;
 	self.actualLink = null;
+	self.actualTimer = null;
 
 	self.createContent = function(){
 		self.roomContainer = $(".room-container");
@@ -72,12 +73,26 @@ var RoomViewController = function() {
 		imageContainer.append(closeBtn);
 
 
-
-		turnRight.bind('click',function(){
-			self.turnImageRigth($(this).parents(".image-container").find("img"));
+		turnRight.bind("mousedown",function(){
+			self.actualTurnButton = $(this);
+			self.actualTimer = setTimeout(function(){
+				self.turnImageRigth(self.actualTurnButton.parents(".image-container").find("img"));
+				self.actualTimer = setTimeout(arguments.callee, 70);
+			},70);
 		});
-		turnLeft.bind('click',function(){
-			self.turnImageLeft($(this).parents(".image-container").find("img"));
+		turnRight.bind("mouseup",function(){
+			clearTimeout(self.actualTimer);
+		});
+		
+		turnLeft.bind("mousedown",function(){
+			self.actualTurnButton = $(this);
+			self.actualTimer = setTimeout(function(){
+				self.turnImageLeft(self.actualTurnButton.parents(".image-container").find("img"));
+				self.actualTimer = setTimeout(arguments.callee, 70);
+			},70);
+		});
+		turnLeft.bind("mouseup",function(){
+			clearTimeout(self.actualTimer);
 		});
 
 		closeBtn.hide();
@@ -98,16 +113,14 @@ var RoomViewController = function() {
 			"margin-top": (height - (height-30))/2 +"px",
 			"margin-left": (width - (width-30))/2 +"px"
 		});
-		imageContainer.draggable({
-			containment: self.roomContainer
-		}).resizable({
+
+		imageContainer.draggable({containment: self.roomContainer}).resizable({
 			containment: self.roomContainer,
 			alsoResize: imageContainer.find('img'),
 			handles: 'ne, se, sw, nw',
 			minHeight: 50,
       		minWidth: 50
 			});
-
 		self.roomContainer.bind("mousedown", function(event){
 			if(!$(event.target).hasClass("ui-resizable-handle") &&
 				!$(event.target).hasClass("image-container") &&
@@ -132,6 +145,7 @@ var RoomViewController = function() {
 
 		return imageContainer;
 	}
+	
 
 	self.turnImageRigth = function(image){
 		num = image.attr("src").split("/")[3].split(".")[0];
