@@ -8,7 +8,7 @@ var ImageService = function() {
 
 	self.obtainMenuImages = function(){
 		$.each(self.folderImages, function(index,value){
-			self.menuImages =  {  index :"Resources/Room/"+value+"/01.png" }
+			self.menuImages =  {  index :"Resources/Room/"+value+"/1.png" }
 		});
 		self.imageDelegate.assignMenuImages(self.menuImages);
 	}

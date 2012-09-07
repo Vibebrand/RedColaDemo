@@ -17,6 +17,7 @@
 	width: 1024px;
 	height: 768px;
 	position: relative;
+	overflow: hidden;
 
 }
 
@@ -97,4 +98,16 @@
 	bottom: 0px;
 	left: 0px;
 }
+
+.turnRight-button{
+	top: 35%;
+	right: 0px;
+	position: absolute;
+}
+.turnLeft-button{
+	top: 35%;
+	left: 0px;
+	position: absolute;
+}
+
 
