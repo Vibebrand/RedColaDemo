@@ -1,45 +1,56 @@
-
-.room-section{
-	margin-top: 100px;
-	margin-left: 100px;
+* {
+	margin: 0;
+	padding: 0;
 }
 
-.room-container{
-	width: 900px;
-	height: 600px;
-	border: black 1px solid;
+.room-section {
+	margin: 0 auto;
+	max-width: 1024px;
+	max-height: 768px;
+	min-height: 600px;
+	min-width: 800px;
+	overflow: hidden;
+	border: 1px solid #888;
+}
+
+.room-container {
+	width: 1024px;
+	height: 768px;
 	position: relative;
-	float: left;
+
 }
 
-.menu-container{
-	width: 100px;
-	height: 600px;
-	border: black 1px solid;
-	position: relative;
-	float: left;
+.menu-container {
+	width: 120px;
+	border-right:1px solid #aaa;
+	position: absolute;
+	z-index: 20;
 }
-.menuLink-container, .menuLink-container img{
+.menuLink-container, .menuLink-container img {
 	width: 100px;
 	height: 100px;
 }
 
-.menuLink-container{
-	border: black 1px solid;
+.image-container img {
+   	cursor: move;
 }
-.ui-resizable-handle
-{
+.image-container {
+	position: relative;
+}
+.menuLink-container{
+	border-bottom: 1px solid #aaa;
+	padding: 10px;
+}
+.ui-resizable-handle {
 	background: none repeat scroll 0 0 #555555;
     border: 1px solid #111111;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
     height: 10px;
     width: 10px;
     position: absolute;
-
 }
 
-.ui-resizable-handle:hover
-{
+.ui-resizable-handle:hover {
 	background: none repeat scroll 0 0 #757575;
     border: 2px solid #111111;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
@@ -49,29 +60,41 @@
 
 }
 
-.close-button{
-	top: -5;
-	right: -5;
-	position: absolute;
+.close-button {
+   background: none repeat scroll 0 0 rgb(255, 255, 255);
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 15px 15px 15px 15px;
+    cursor: pointer;
+    font-family: helvetica;
+    font-size: 1em;
+    font-weight: bold;
+    height: 1.1em;
+    line-height: 0.6em;
+    position: absolute;
+    right: -35px;
+    text-align: center;
+    top: -35px;
+    vertical-align: middle;
+    width: 1.1em;
 }
 
-.ui-resizable-nw{
-	top: -15;
-	left: -15;
+.ui-resizable-nw {
+	top: -15px;
+	left: -15px;
 }
 
-.ui-resizable-ne{
-	top: -15;
-	right: -15;
+.ui-resizable-ne {
+	top: -15px;
+	right: -15px;
 }
 
-.ui-resizable-se{
-	bottom: -15;
-	right: -15;
+.ui-resizable-se {
+	bottom: -15px;
+	right: -15px;
 }
 
 .ui-resizable-sw{
-	bottom: -15;
-	left: -15;
+	bottom: -15px;
+	left: -15px;
 }
 

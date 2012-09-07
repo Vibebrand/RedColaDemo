@@ -18,7 +18,8 @@ var RoomViewController = function() {
 	self.createMenuLink = function(src, index){
 		menuLink = $("<div></div>");
 		menuLink.attr("class","menuLink-container");
-		menuImage = $("<img>/");
+		menuImage = $("<img />");
+		menuImage.attr("alt","dragImaage");
 		menuImage.attr("src",src);
 		menuLink.append(menuImage);
 		menuLink.data("id",index);
@@ -31,10 +32,11 @@ var RoomViewController = function() {
 		imageContainer = $("<div></div>");
 		imageContainer.attr("class","image-container");
 
-		closeBtn = $("<div></div>");
+		closeBtn = $("<button></button>");
 		closeBtn.attr("class","close-button");
-		closeBtn.text("X");
-		image = $("<img/>");
+		closeBtn.text("x");
+		image = $("<img />");
+		image.attr("alt","dragImaage");
 		image.attr("src",imageUrl);
 		image.height(height);
 		image.width(width);
