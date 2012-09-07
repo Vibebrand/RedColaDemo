@@ -1,0 +1,10 @@
+.Python
+bin/
+include/
+local/
+lib/
+build/
+.DS_Store
+*.swp
+*.pyc
+
