@@ -1,37 +1,40 @@
-
-.room-section{
-margin: 0 auto;
-max-width: 1024px;
-max-height: 768px;
-min-height: 600px;
-min-width: 800px;
-overflow: hidden;
-border: 1px solid #888;
+* {
+	margin: 0;
+	padding: 0;
 }
 
-.room-container{
+.room-section {
+	margin: 0 auto;
+	max-width: 1024px;
+	max-height: 768px;
+	min-height: 600px;
+	min-width: 800px;
+	overflow: hidden;
+	border: 1px solid #888;
+}
+
+.room-container {
 	width: 1024px;
 	height: 768px;
 	position: relative;
 
 }
 
-.menu-container{
+.menu-container {
 	width: 120px;
-	height: 600px;
 	border-right:1px solid #aaa;
 	position: absolute;
 	z-index: 20;
 }
-.menuLink-container, .menuLink-container img{
+.menuLink-container, .menuLink-container img {
 	width: 100px;
 	height: 100px;
 }
 
-.image-container img{
+.image-container img {
    	cursor: move;
 }
-.image-container{
+.image-container {
 	position: relative;
 }
 .menuLink-container{
@@ -47,8 +50,7 @@ border: 1px solid #888;
     position: absolute;
 }
 
-.ui-resizable-handle:hover
-{
+.ui-resizable-handle:hover {
 	background: none repeat scroll 0 0 #757575;
     border: 2px solid #111111;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
@@ -58,7 +60,7 @@ border: 1px solid #888;
 
 }
 
-.close-button{
+.close-button {
    background: none repeat scroll 0 0 rgb(255, 255, 255);
     border: 1px solid rgb(204, 204, 204);
     border-radius: 15px 15px 15px 15px;
@@ -76,17 +78,17 @@ border: 1px solid #888;
     width: 1.1em;
 }
 
-.ui-resizable-nw{
+.ui-resizable-nw {
 	top: -15px;
 	left: -15px;
 }
 
-.ui-resizable-ne{
+.ui-resizable-ne {
 	top: -15px;
 	right: -15px;
 }
 
-.ui-resizable-se{
+.ui-resizable-se {
 	bottom: -15px;
 	right: -15px;
 }
