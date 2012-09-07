@@ -23,7 +23,11 @@ var RoomViewController = function() {
 		menuImage.attr("src",src);
 		menuLink.append(menuImage);
 		menuLink.data("id",index);
-		menuLink.bind('click', function(){
+		menuLink.mousedown("mousedown", function(){
+			
+		});
+		menuLink.bind('mouseup', function(event){
+
 			self.onClickMenuLink($(this));
 		});
 		return menuLink;
@@ -144,15 +148,15 @@ var RoomViewController = function() {
 	}
 
 	self.assignImage = function (src) {
-		image = self.createImage(src, 200,200);
+		image = self.createImage(src, 100,100);
 		self.roomContainer.append(image);
 
 		image.css({
-			"top": (self.roomContainer.height()/2) -image.height()/2,
-			"left":(self.roomContainer.width()/2) -image.width()/2
+			"top": 0,
+			"left":0
 		});
-
 		image.find(".ui-resizable-handle").hide();
+		image.trigger("mousedown");
 	}
 
 	self.addZero = function(num)
