@@ -56,7 +56,6 @@ var RoomViewController = function() {
 		image.css({
 			"height": height-30,
 			"width": width-30,
-			"position": 'absolute',
 			"margin-top": (height - (height-30))/2 +"px",
 			"margin-left": (width - (width-30))/2 +"px"
 		});
@@ -66,7 +65,9 @@ var RoomViewController = function() {
 		}).resizable({
 			containment: self.roomContainer,
 			alsoResize: imageContainer.find('img'),
-			handles: 'ne, se, sw, nw'
+			handles: 'ne, se, sw, nw',
+			minHeight: 50,
+      		minWidth: 50
 			});
 
 		self.roomContainer.bind("mousedown", function(event){
