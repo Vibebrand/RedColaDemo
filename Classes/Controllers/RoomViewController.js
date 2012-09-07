@@ -116,24 +116,30 @@ var RoomViewController = function() {
 	}
 
 	self.turnImageRigth = function(image){
-		number = parseInt(image.attr("src").split("/")[3].split(".")[0]);
+		num = image.attr("src").split("/")[3].split(".")[0];
 		folder = image.attr("src").split("/")[2];
 
-		number --;
+		if(num.length == 2)
+			num = num[0] == "0" ?  parseInt(num[1]) :  parseInt(num);
+		
+		num = num-1;
+		num = num < 1? 10: num;
 
-		number = number < 1 ? 36: number;
-
-		image.attr("src","Resources/Room/"+folder+"/"+number+".png");
-	}
+		image.attr("src","Resources/Room/"+folder+"/"+self.addZero(num)+".png");
+	}	
 	self.turnImageLeft = function(image){
-		number = parseInt(image.attr("src").split("/")[3].split(".")[0]);
+		num = image.attr("src").split("/")[3].split(".")[0];
 		folder = image.attr("src").split("/")[2];
 
-		number++;
+		if(num.length == 2)
+			num = num[0] == "0" ?  parseInt(num[1]) :  parseInt(num);
+		
 
-		number = number > 36 ? 1: number;
+		num++;
 
-		image.attr("src","Resources/Room/"+folder+"/"+number+".png");
+		num = num > 10 ? 1: num;
+
+		image.attr("src","Resources/Room/"+folder+"/"+self.addZero(num)+".png");
 	}
 
 	self.onClickMenuLink = function(menuLink) {
@@ -150,5 +156,14 @@ var RoomViewController = function() {
 		});
 
 		image.find(".ui-resizable-handle").hide();
+	}
+
+	self.addZero = function(num)
+	{
+		stringNum = String(num)
+		if(stringNum.length < 2){
+			return String("0"+""+stringNum)
+		}else
+			return stringNum;	
 	}
 }
