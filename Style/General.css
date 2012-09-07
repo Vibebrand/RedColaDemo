@@ -103,11 +103,13 @@
 	top: 35%;
 	right: 0px;
 	position: absolute;
+	cursor: pointer;
 }
 .turnLeft-button{
 	top: 35%;
 	left: 0px;
 	position: absolute;
+	cursor: pointer;
 }
 
 

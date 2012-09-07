@@ -72,7 +72,7 @@ var RoomViewController = function() {
 			"height": height,
 			"width": width,
 			"position":"absolute", 
-			"z-index": "1"
+			"z-index": "2"
 		});
 		image.css({
 			"height": height-30,
@@ -124,7 +124,6 @@ var RoomViewController = function() {
 		
 		num = num-1;
 		num = num < 1? 10: num;
-
 		image.attr("src","Resources/Room/"+folder+"/"+self.addZero(num)+".png");
 	}	
 	self.turnImageLeft = function(image){
@@ -133,16 +132,14 @@ var RoomViewController = function() {
 
 		if(num.length == 2)
 			num = num[0] == "0" ?  parseInt(num[1]) :  parseInt(num);
-		
 
 		num++;
-
 		num = num > 10 ? 1: num;
-
 		image.attr("src","Resources/Room/"+folder+"/"+self.addZero(num)+".png");
 	}
 
 	self.onClickMenuLink = function(menuLink) {
+		$(".image-container").css({"z-index":"1"});
 		self.imageService.obtainImage(menuLink.data("id"))
 	}
 
