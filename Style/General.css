@@ -112,4 +112,13 @@
 	cursor: pointer;
 }
 
+.menu-button{
+	margin-left: 130px;
+	height: 1.1em;
+	width: 1.1em;
+	z-index: 9999;
+	position: absolute;
+}
+
+
 

@@ -1,7 +1,7 @@
 var RoomViewController = function() {
 	var self = this;
 	self.imageService = null;
-	self.position = null;
+	self.position = {};
 	self.actualLink = null;
 	self.actualTimer = null;
 
@@ -16,6 +16,31 @@ var RoomViewController = function() {
 			menuLink = self.createMenuLink(value,  index);
 			self.menuContainer.append(menuLink);
 		});
+
+		self.createMenuButton();
+	}
+
+	self.createMenuButton = function(){
+		menuBtn = $("<div></div>");
+		menuBtn.attr("class","menu-button");
+		menuBtn.text("<");
+		self.menuContainer.after(menuBtn);
+
+		menuBtn.bind("click", function(){
+			self.toggleMenu($(this));
+		});
+	}
+	self.toggleMenu = function(button){
+		if(self.menuContainer.is(":visible")){
+			self.menuContainer.animate({"width": "0px"},300, function(){
+				$(this).hide()
+			});
+			button.text(">").animate({"margin-left": "0px"},300);
+		}else{
+			self.menuContainer.show().animate({'width':'120px','display':'block'},300);
+			button.text("<").animate({"margin-left": "130px"},300);
+		}
+
 	}
 
 	self.createMenuLink = function(src, index){
@@ -145,8 +170,6 @@ var RoomViewController = function() {
 
 		return imageContainer;
 	}
-	
-
 	self.turnImageRigth = function(image){
 		num = image.attr("src").split("/")[3].split(".")[0];
 		folder = image.attr("src").split("/")[2];
@@ -169,27 +192,23 @@ var RoomViewController = function() {
 		num = num > 10 ? 1: num;
 		image.attr("src","Resources/Room/"+folder+"/"+self.addZero(num)+".png");
 	}
-
 	self.onClickMenuLink = function(menuLink) {
 		$(".image-container").css({"z-index":"1"});
 		self.imageService.obtainImage(menuLink.data("id"))
 	}
-
 	self.assignImage = function (src) {
 		image = self.createImage(src, 130,130);
 		self.roomContainer.append(image);
-		if(self.position){
+		if(self.position.left && self.position.top){
 			image.css(self.position);
 			image.css({"top": "-=15px", "left": "-=15px"});
 		}
 		else
-			image.css({"top": "100px", "left": "100px"});
+			image.css({"top": "200px", "left": "200px"});
 
 		image.find(".ui-resizable-handle").hide();
 	}
-
-	self.addZero = function(num)
-	{
+	self.addZero = function(num){
 		stringNum = String(num)
 		if(stringNum.length < 2){
 			return String("0"+""+stringNum)
