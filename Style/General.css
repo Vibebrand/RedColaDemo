@@ -49,12 +49,6 @@
     width: 10px;
     position: absolute;
 }
-.close-button{
-	top:-20;
-	left: -20;
-	position: absolute;
-	cursor: pointer;
-}
 
 .ui-resizable-handle:hover {
 	background: none repeat scroll 0 0 #757575;
@@ -66,26 +60,6 @@
 
 }
 
-<<<<<<< HEAD
-.ui-resizable-nw{
-	top: 0;
-	left: 0;
-}
-
-.ui-resizable-ne{
-	top: 0;
-	right: 0;
-}
-
-.ui-resizable-se{
-	bottom: 0;
-	right: 0;
-}
-
-.ui-resizable-sw{
-	bottom: 0;
-	left: 0;
-=======
 .close-button {
    background: none repeat scroll 0 0 rgb(255, 255, 255);
     border: 1px solid rgb(204, 204, 204);
@@ -97,31 +71,30 @@
     height: 1.1em;
     line-height: 0.6em;
     position: absolute;
-    right: -35px;
+    right: -15px;
     text-align: center;
-    top: -35px;
+    top: -15px;
     vertical-align: middle;
     width: 1.1em;
 }
 
 .ui-resizable-nw {
-	top: -15px;
-	left: -15px;
+	top:0px;
+	left:0px;
 }
 
 .ui-resizable-ne {
-	top: -15px;
-	right: -15px;
+	top: 0px;
+	right: 0px;
 }
 
 .ui-resizable-se {
-	bottom: -15px;
-	right: -15px;
+	bottom: 0px;
+	right: 0px;
 }
 
 .ui-resizable-sw{
-	bottom: -15px;
-	left: -15px;
->>>>>>> origin/develop
+	bottom: 0px;
+	left: 0px;
 }
 
