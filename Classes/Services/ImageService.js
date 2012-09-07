@@ -3,7 +3,7 @@ var ImageService = function() {
 
 	self.imageDelegate = null;
 	self.folderImages = {
-		"0":"Airplane",
+		"0":"Phone",
 	}	
 
 	self.obtainMenuImages = function(){
