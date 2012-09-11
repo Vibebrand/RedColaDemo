@@ -105,9 +105,7 @@ var RoomViewController = function() {
 				self.actualTimer = setTimeout(arguments.callee, 70);
 			},70);
 		});
-		turnRight.bind("mouseup",function(){
-			clearTimeout(self.actualTimer);
-		});
+	
 		
 		turnLeft.bind("mousedown",function(){
 			self.actualTurnButton = $(this);
@@ -116,7 +114,8 @@ var RoomViewController = function() {
 				self.actualTimer = setTimeout(arguments.callee, 70);
 			},70);
 		});
-		turnLeft.bind("mouseup",function(){
+		
+		$(document).bind("mouseup",function(){
 			clearTimeout(self.actualTimer);
 		});
 
