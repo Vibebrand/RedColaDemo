@@ -9,7 +9,7 @@ var PhotoViewController = function() {
 		self.roomContainer = $(".room-container");
 		self.menuContainer = $(".menu-container");
 		self.imageService.obtainMenuImages();
-	}
+	};
 
 	self.assignMenuImages = function(menuImages){
 		$.each(menuImages, function(index,value){
@@ -18,7 +18,7 @@ var PhotoViewController = function() {
 		});
 
 		self.createMenuButton();
-	}
+	};
 
 	self.createMenuButton = function(){
 		menuBtn = $("<div></div>");
@@ -29,11 +29,11 @@ var PhotoViewController = function() {
 		menuBtn.bind("click", function(){
 			self.toggleMenu($(this));
 		});
-	}
+	};
 	self.toggleMenu = function(button){
 		if(self.menuContainer.is(":visible")){
 			self.menuContainer.animate({"width": "0px"},300, function(){
-				$(this).hide()
+				$(this).hide();
 			});
 			button.text(">").animate({"margin-left": "0px"},300);
 		}else{
@@ -41,7 +41,7 @@ var PhotoViewController = function() {
 			button.text("<").animate({"margin-left": "130px"},300);
 		}
 
-	}
+	};
 
 	self.createMenuLink = function(src, index){
 		menuLink = $("<div></div>");
@@ -64,14 +64,14 @@ var PhotoViewController = function() {
 			{
 				"left" : $(".ui-draggable-dragging").css("left"),
 				"top" : $(".ui-draggable-dragging").css("top")
-			}
+			};
 
 			self.roomContainer.unbind("mousemove");
 			self.imageService.obtainImage($(this).data("id"));
 		});
 		
 		return menuLink;
-	}
+	};
 	self.createImage = function(imageUrl,height,width){
 		imageContainer = $("<div></div>");
 		imageContainer.attr("class","image-container");
@@ -155,7 +155,7 @@ var PhotoViewController = function() {
 				$(".image-container").find(".close-button").hide();
 				$(".image-container").find("div[class^='turn']").hide();
 			}
-		})
+		});
 		imageContainer.bind("mousedown", function(){
 			$(".image-container").css({"z-index":"1"});
 			$(".image-container").find(".ui-resizable-handle").hide();
@@ -168,7 +168,7 @@ var PhotoViewController = function() {
 		});
 
 		return imageContainer;
-	}
+	};
 	self.turnImageRigth = function(image){
 		num = image.attr("src").split("/")[3].split(".")[0];
 		folder = image.attr("src").split("/")[2];
@@ -179,7 +179,7 @@ var PhotoViewController = function() {
 		num = num-1;
 		num = num < 1? 10: num;
 		image.attr("src","Resources/Draggables/"+folder+"/"+self.addZero(num)+".png");
-	}	
+	};
 	self.turnImageLeft = function(image){
 		num = image.attr("src").split("/")[3].split(".")[0];
 		folder = image.attr("src").split("/")[2];
@@ -190,11 +190,11 @@ var PhotoViewController = function() {
 		num++;
 		num = num > 10 ? 1: num;
 		image.attr("src","Resources/Draggables/"+folder+"/"+self.addZero(num)+".png");
-	}
+	};
 	self.onClickMenuLink = function(menuLink) {
 		$(".image-container").css({"z-index":"1"});
 		self.imageService.obtainImage(menuLink.data("id"))
-	}
+	};
 	self.assignImage = function (src) {
 		image = self.createImage(src, 130,130);
 		self.roomContainer.append(image);
@@ -206,12 +206,12 @@ var PhotoViewController = function() {
 			image.css({"top": "200px", "left": "200px"});
 
 		image.find(".ui-resizable-handle").hide();
-	}
+	};
 	self.addZero = function(num){
 		stringNum = String(num)
 		if(stringNum.length < 2){
-			return String("0"+""+stringNum)
+			return String("0"+""+stringNum);
 		}else
 			return stringNum;	
-	}
+	};
 }
