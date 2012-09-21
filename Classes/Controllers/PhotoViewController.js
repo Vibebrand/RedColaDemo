@@ -92,11 +92,32 @@ var PhotoViewController = function() {
 		closeBtn.attr("class","close-button");
 		closeBtn.text("x");
 
+		rotateBtn = $("<div></div>");
+		rotateBtn.attr("class","rotate-button");
+		rotateBtn.text("rotate");
+
 		imageContainer.append(image);
 		imageContainer.append(turnRight);
 		imageContainer.append(turnLeft);
 		imageContainer.append(closeBtn);
+		imageContainer.append(rotateBtn);
 
+		closeBtn.hide();
+		turnRight.hide();
+		turnLeft.hide();
+		rotateBtn.hide();
+
+		imageContainer.css({
+			"height": height,
+			"width": width
+		});
+
+		image.css({
+			"height": height-30,
+			"width": width-30,
+			"margin-top": (height - (height-30))/2 +"px",
+			"margin-left": (width - (width-30))/2 +"px"
+		});
 
 		turnRight.bind("mousedown",function(){
 			self.actualTurnButton = $(this);
@@ -105,8 +126,6 @@ var PhotoViewController = function() {
 				self.actualTimer = setTimeout(arguments.callee, 70);
 			},70);
 		});
-	
-		
 		turnLeft.bind("mousedown",function(){
 			self.actualTurnButton = $(this);
 			self.actualTimer = setTimeout(function(){
@@ -114,36 +133,37 @@ var PhotoViewController = function() {
 				self.actualTimer = setTimeout(arguments.callee, 70);
 			},70);
 		});
+		closeBtn.bind("click", function(){
+			$(this).parents(".image-container").remove();
+		});
+		
+
+		rotateBtn.bind('mousedown', function(){
+			$('.image-container').draggable( 'disable' );
+			self.actualImage = $(this).parents('.image-container');
+			$(document).bind('mousemove.rotate', function(event){
+				self.disableSelection();
+				self.rotate(event, self.actualImage);
+			});
+		});
+
+		$(document).bind('mouseup', function(){
+			$(document).unbind('.rotate');
+			$('.image-container').draggable( 'enable' );
+			self.enableSelection();
+		});
 		
 		$(document).bind("mouseup",function(){
 			clearTimeout(self.actualTimer);
 		});
-
-		closeBtn.hide();
-		turnRight.hide();
-		turnLeft.hide();
-		closeBtn.bind("click", function(){
-			$(this).parents(".image-container").remove();
-		});
-		imageContainer.css({
-			"height": height,
-			"width": width,
-			"position":"absolute", 
-			"z-index": "2"
-		});
-		image.css({
-			"height": height-30,
-			"width": width-30,
-			"margin-top": (height - (height-30))/2 +"px",
-			"margin-left": (width - (width-30))/2 +"px"
-		});
-
 		imageContainer.draggable({containment: self.roomContainer}).resizable({
 			containment: self.roomContainer,
 			alsoResize: imageContainer.find('img'),
 			handles: 'ne, se, sw, nw',
 			minHeight: 50,
-      		minWidth: 50
+      		minWidth: 50,
+      		maxHeight: 400,
+      		maxWidth: 400
 			});
 		self.roomContainer.bind("mousedown", function(event){
 			if(!$(event.target).hasClass("ui-resizable-handle") &&
@@ -153,6 +173,7 @@ var PhotoViewController = function() {
 			{
 				$(".image-container").find(".ui-resizable-handle").hide();
 				$(".image-container").find(".close-button").hide();
+				$(".image-container").find(".rotate-button").hide();
 				$(".image-container").find("div[class^='turn']").hide();
 			}
 		});
@@ -164,11 +185,51 @@ var PhotoViewController = function() {
 			$(this).css({"z-index":"2"});
 			$(this).find(".ui-resizable-handle").show();
 			$(this).find(".close-button").show();
+			$(this).find(".rotate-button").show();
 			$(this).find("div[class^='turn']").show();
 		});
 
 		return imageContainer;
 	};
+
+	self.disableSelection = function(){
+		$("body").css({
+			 '-moz-user-select': '-moz-none',
+   			'-khtml-user-select': 'none',
+   			'-webkit-user-select': 'none',
+   			'-ms-user-select': 'none',
+   			'user-select': 'none'
+		});
+	}
+	self.enableSelection = function(){
+		$("body").removeAttr("style");
+	}	
+
+	self.rotate = function(event, image){
+		
+		var offset = image.offset();
+        var center_x = (offset.left) + (image.width()/2);
+        var center_y = (offset.top) + (image.height()/2);
+        var mouse_x = event.pageX; 
+        var mouse_y = event.pageY;
+        var radians = Math.atan2(mouse_x - center_x, mouse_y - center_y);
+        var degree = (radians * (180 / Math.PI) * -1) + 90; 
+
+        var origin = image.height()/2+"px "+image.width()/2+"px";
+     	self.rotateElement(image, degree, (image.width()/2), origin);
+    };
+    self.rotateElement = function(element, degree, origin){
+    	element.css({
+    		 '-moz-transform': 'rotate('+degree+'deg)',
+    		 '-webkit-transform': 'rotate('+degree+'deg)',
+    		 '-o-transform': 'rotate('+degree+'deg)',
+    		 '-ms-transform': 'rotate('+degree+'deg)',
+
+    		webkitTransformOrigin: origin,	
+			transformOrigin: origin
+    	});
+    }
+
 	self.turnImageRigth = function(image){
 		num = image.attr("src").split("/")[3].split(".")[0];
 		folder = image.attr("src").split("/")[2];
@@ -200,10 +261,10 @@ var PhotoViewController = function() {
 		self.roomContainer.append(imageContainer);
 		if(self.position.left && self.position.top){
 			imageContainer.css(self.position);
-			imageContainer.css({"top": "-=15px", "left": "-=15px"});
+			imageContainer.css({"top": "-=15px", "left": "-=15px",'position': 'absolute'});
 		}
 		else
-			imageContainer.css({"top": "200px", "left": "200px"});
+			imageContainer.css({"top": "200px", "left": "200px",'position': 'absolute'});
 
 		imageContainer.find(".ui-resizable-handle").hide();
 		imageContainer.find('img').lazyload();
