@@ -112,7 +112,7 @@ div[class^='turn']{
 	height: 15px;
 	line-height: 0em;
 	text-align: center;
-	line-height: 1.3em;
+	line-height: 1.1em;
 	font-family: helvetica;
     font-size: 1em;
     font-weight: bold;
@@ -128,7 +128,7 @@ div[class^='turn']:hover{
 	height: 15px;
 	line-height: 0em;
 	text-align: center;
-	line-height: 1.3em;
+	line-height: 1.1em;
 	font-family: helvetica;
     font-size: 1em;
     font-weight: bold;
