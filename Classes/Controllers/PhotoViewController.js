@@ -1,4 +1,4 @@
-var RoomViewController = function() {
+var PhotoViewController = function() {
 	var self = this;
 	self.imageService = null;
 	self.position = {};
@@ -178,7 +178,7 @@ var RoomViewController = function() {
 		
 		num = num-1;
 		num = num < 1? 10: num;
-		image.attr("src","Resources/Room/"+folder+"/"+self.addZero(num)+".png");
+		image.attr("src","Resources/Draggables/"+folder+"/"+self.addZero(num)+".png");
 	}	
 	self.turnImageLeft = function(image){
 		num = image.attr("src").split("/")[3].split(".")[0];
@@ -189,7 +189,7 @@ var RoomViewController = function() {
 
 		num++;
 		num = num > 10 ? 1: num;
-		image.attr("src","Resources/Room/"+folder+"/"+self.addZero(num)+".png");
+		image.attr("src","Resources/Draggables/"+folder+"/"+self.addZero(num)+".png");
 	}
 	self.onClickMenuLink = function(menuLink) {
 		$(".image-container").css({"z-index":"1"});
