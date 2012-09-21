@@ -15,6 +15,7 @@ var PhotoViewController = function() {
 		$.each(menuImages, function(index,value){
 			menuLink = self.createMenuLink(value,  index);
 			self.menuContainer.append(menuLink);
+			menuLink.find('img').lazyload();
 		});
 
 		self.createMenuButton();
@@ -40,7 +41,6 @@ var PhotoViewController = function() {
 			self.menuContainer.show().animate({'width':'120px','display':'block'},300);
 			button.text("<").animate({"margin-left": "130px"},300);
 		}
-
 	};
 
 	self.createMenuLink = function(src, index){
@@ -196,16 +196,17 @@ var PhotoViewController = function() {
 		self.imageService.obtainImage(menuLink.data("id"))
 	};
 	self.assignImage = function (src) {
-		image = self.createImage(src, 130,130);
-		self.roomContainer.append(image);
+		imageContainer = self.createImage(src, 130,130);
+		self.roomContainer.append(imageContainer);
 		if(self.position.left && self.position.top){
-			image.css(self.position);
-			image.css({"top": "-=15px", "left": "-=15px"});
+			imageContainer.css(self.position);
+			imageContainer.css({"top": "-=15px", "left": "-=15px"});
 		}
 		else
-			image.css({"top": "200px", "left": "200px"});
+			imageContainer.css({"top": "200px", "left": "200px"});
 
-		image.find(".ui-resizable-handle").hide();
+		imageContainer.find(".ui-resizable-handle").hide();
+		imageContainer.find('img').lazyload();
 	};
 	self.addZero = function(num){
 		stringNum = String(num)
