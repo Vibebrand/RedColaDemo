@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-	importfile("Classes/Controllers/RoomViewController.js");
+	importfile("Classes/Controllers/PhotoViewController.js");
 	importfile("Classes/Services/ImageService.js");
 
 
@@ -9,13 +9,13 @@ $(document).ready(function(){
 	},50);
 
 	var main = function(){
-		var roomViewController = new RoomViewController();
+		var photoViewController = new PhotoViewController();
 		var imageService = new ImageService();
 
 		
-		roomViewController.imageService = imageService;
-		imageService.imageDelegate = roomViewController;
+		photoViewController.imageService = imageService;
+		imageService.imageDelegate = photoViewController;
 
-		roomViewController.createContent();
+		photoViewController.createContent();
 	}	
 });
