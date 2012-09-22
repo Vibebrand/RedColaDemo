@@ -94,7 +94,7 @@ var PhotoViewController = function() {
 
 		rotateBtn = $("<div></div>");
 		rotateBtn.attr("class","rotate-button");
-		rotateBtn.text("rotate");
+		rotateBtn.text("↻");
 
 		imageContainer.append(image);
 		imageContainer.append(turnRight);

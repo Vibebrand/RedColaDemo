@@ -3,14 +3,20 @@
 	padding: 0;
 }
 
+body{
+    background: url('use_your_illusion.png');
+}
+
 .room-section {
-	margin: 0 auto;
-	max-width: 1024px;
-	max-height: 768px;
-	min-height: 600px;
-	min-width: 800px;
-	overflow: hidden;
-	border: 1px solid #888;
+    border: 10px solid rgba(0, 0, 0, 0.8);
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.9);
+    margin: 0 auto;
+    max-height: 600px;
+    max-width: 1024px;
+    min-height: 600px;
+    min-width: 800px;
+    overflow: hidden;
 }
 
 .photo-container{
@@ -18,7 +24,7 @@
 }
 .room-container {
 	width: 1024px;
-	height: 768px;
+	height: 600px;
 	position: relative;
 	overflow: hidden;
 
@@ -26,18 +32,19 @@
 
 .room-container .room-image{
 	width: 1024px;
-	height: 768px;
 }
 
 .menu-container {
 	width: 120px;
-	border-right:1px solid #aaa;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.6);
+    border-radius: 0 10px 10px 0;
+    height: 600px;
+    padding: 20px;
 	position: absolute;
 	z-index: 20;
 }
 .menuLink-container, .menuLink-container img {
 	width: 100px;
-	height: 100px;
 }
 
 .image-container img {
@@ -47,16 +54,18 @@
 	position: relative;
 }
 .menuLink-container{
-	border-bottom: 1px solid #aaa;
-	padding: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+    padding: 10px;
 }
 .ui-resizable-handle {
-	background: none repeat scroll 0 0 #555555;
-    border: 1px solid #111111;
+    background: none repeat scroll 0 0 rgb(255, 255, 255);
+    border: 1px solid rgb(17, 17, 17);
+    border-radius: 15px 15px 15px 15px;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
     height: 10px;
-    width: 10px;
     position: absolute;
+    width: 10px;
 }
 
 .ui-resizable-handle:hover {
@@ -70,72 +79,35 @@
 }
 
 .close-button {
-   	background: none repeat scroll 0 0 rgb(255, 255, 255);
+   background: none repeat scroll 0 0 rgb(255, 255, 255);
     border: 1px solid rgb(204, 204, 204);
-    color: #555555;
     border-radius: 15px 15px 15px 15px;
+    color: rgb(85, 85, 85);
     cursor: pointer;
-    font-family: helvetica;
     font-size: 1em;
-    font-weight: bold;
-    height: 1.5em;
-    line-height: 0.6em;
+    height: 1.2em;
+    line-height: 0;
     position: absolute;
     right: -25px;
     text-align: center;
     top: -25px;
     vertical-align: middle;
-    width: 1.5em;
-}
-.close-button:hover {
-   	background: none repeat scroll 0 0 rgb(255, 255, 255);
-    border: 1px solid rgb(204, 204, 204);
-    color: #555555;
-    border-radius: 15px 15px 15px 15px;
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
-    cursor: pointer;
-    font-family: helvetica;
-    font-size: 1em;
-    font-weight: bold;
-    height: 1.5em;
-    line-height: 0.6em;
-    position: absolute;
-    right: -25px;
-    text-align: center;
-    top: -25px;
-    vertical-align: middle;
-    width: 1.5em;
-}
+    width: 1.2em;
+} 
+
 div[class^='turn']{
-	background: none repeat scroll 0 0 #FFFFFF;
-	border: 1px solid #CCCCCC;
-	color: #555555;
-	border-radius: 15px 15px 15px 15px;
-	width: 25px;
-	height: 15px;
-	line-height: 0em;
-	text-align: center;
-	line-height: 1.1em;
-	font-family: helvetica;
+    background: none repeat scroll 0 0 rgb(255, 255, 255);
+    border: 1px solid rgb(17, 17, 17);
+    border-radius: 15px 15px 15px 15px;
+    color: rgb(85, 85, 85);
     font-size: 1em;
     font-weight: bold;
+    height: 20px;
+    line-height: 1.5em;
+    text-align: center;
+    width: 22px;
 }
 
-div[class^='turn']:hover{
-	background: none repeat scroll 0 0 #FFFFFF;
-	border: 1px solid #878787;
-	color: #555555;
-	box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
-	border-radius: 15px 15px 15px 15px;
-	width: 25px;
-	height: 15px;
-	line-height: 0em;
-	text-align: center;
-	line-height: 1.1em;
-	font-family: helvetica;
-    font-size: 1em;
-    font-weight: bold;
-}
 
 .ui-resizable-nw {
 	top:0px;
@@ -213,43 +185,20 @@ div[class^='turn']:hover{
 }
 
 .rotate-button {
-   	background: none repeat scroll 0 0 rgb(255, 255, 255);
-    border: 1px solid rgb(204, 204, 204);
-    color: #555555;
+    background: none repeat scroll 0 0 rgb(255, 255, 255);
     border-radius: 15px 15px 15px 15px;
-    cursor: pointer;
-    font-family: helvetica;
-    font-size: 1em;
-    font-weight: bold;
-    height: 1.5em;
-    line-height: 0.6em;
-    position: absolute;
+    border: 1px solid rgb(17, 17, 17);
+    color: rgb(85, 85, 85);
+    font-size: 1.4em;
+    height: 1em;
     left: -25px;
+    line-height: 1em;
+    position: absolute;
     text-align: center;
     top: -25px;
-    vertical-align: middle;
-    width: 1.5em;
-}
-.rotate-button:hover {
-   	background: none repeat scroll 0 0 rgb(255, 255, 255);
-    border: 1px solid rgb(204, 204, 204);
-    color: #555555;
-    border-radius: 15px 15px 15px 15px;
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    width: 1em;
     cursor: pointer;
-    font-family: helvetica;
-    font-size: 1em;
-    font-weight: bold;
-    height: 1.5em;
-    line-height: 0.6em;
-    position: absolute;
-    left: -25px;
-    text-align: center;
-    top: -25px;
-    vertical-align: middle;
-    width: 1.5em;
 }
-
 
 
 

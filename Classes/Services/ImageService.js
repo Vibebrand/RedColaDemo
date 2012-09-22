@@ -4,6 +4,8 @@ var ImageService = function() {
 	self.imageDelegate = null;
 	self.folderImages = {
 		"0":"Phone",
+		"1":"Chair",
+		"2":"PS3"
 	};
 
 	self.obtainMenuImages = function(){
