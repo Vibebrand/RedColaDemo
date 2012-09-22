@@ -12,6 +12,7 @@ var PhotoViewController = function() {
 	};
 
 	self.assignMenuImages = function(menuImages){
+		console.log(menuImages);
 		$.each(menuImages, function(index,value){
 			menuLink = self.createMenuLink(value,  index);
 			self.menuContainer.append(menuLink);

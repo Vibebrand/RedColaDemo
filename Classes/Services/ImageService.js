@@ -9,8 +9,9 @@ var ImageService = function() {
 	};
 
 	self.obtainMenuImages = function(){
+		self.menuImages = {};
 		$.each(self.folderImages, function(index,value){
-			self.menuImages =  {  index :"Resources/Draggables/"+value+"/01.png" };
+			self.menuImages[index] = "Resources/Draggables/"+value+"/01.png";
 		});
 		self.imageDelegate.assignMenuImages(self.menuImages);
 	};
